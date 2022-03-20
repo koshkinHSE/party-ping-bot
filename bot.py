@@ -38,7 +38,7 @@ def handle_messages(message):
     message_text = message.text
     if message.chat.type == "private":
         bot.send_message(message.chat.id, cfg.ERR_WRONG_USAGE)
-    elif message.chat.type == "group" or message.chat.type == "supergroup":  # Somewhy some private groups show as super-
+    elif message.chat.type == "group" or message.chat.type == "supergroup":  # Somewhy some private groups appear as super-
         if message_text.startswith("/add"):
             if utils.save_chat_members(message):
                 bot.reply_to(message, cfg.MEMBERS_SAVED)
