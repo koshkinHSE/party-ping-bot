@@ -35,10 +35,11 @@ def help(message):
 # Text messages
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def handle_messages(message):
+    message_text = message.text
     if message.chat.type == "private":
         bot.send_message(message.chat.id, cfg.ERR_WRONG_USAGE)
-    elif message.chat.type == "group":
-        if "/add" in message.text:
+    elif message.chat.type == "group" or message.chat.type == "supergroup":  # Somewhy some private groups show as super-
+        if message_text.startswith("/add"):
             if utils.save_chat_members(message):
                 bot.reply_to(message, cfg.MEMBERS_SAVED)
             else:
@@ -46,10 +47,8 @@ def handle_messages(message):
         elif "@all" in message.text:
             mention = utils.get_chat_members(message)
             bot.reply_to(message, mention)
-        elif "Слава Украине" in message.text:
+        elif "Слава Украине" in message.text or "Слава Україні!" in message.text:
             bot.reply_to(message, "Героям слава")
-    elif message.chat.type == "supergroup":
-        bot.send_message(message.chat.id, cfg.ERR_GROUPS_ONLY)
     elif message.chat.type == "channel":
         bot.send_message(message.chat.id, cfg.ERR_GROUPS_ONLY)
 
@@ -64,6 +63,7 @@ def test(message):
 @bot.message_handler(func=lambda message: True, content_types=['sticker'])
 def msg_not_recognized_sticker(message):
     bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEEN6xiNyhEU0K0JoyWstwR_zG4KplSowACOgADzMbLEXdDcDaH7QVAIwQ")
+    # Make it reply only when mentioned
 
 
 @bot.message_handler(func=lambda message: True, content_types=['photo', 'video', 'audio', 'voice', 'video_note', 'text', 'document', 'contact', 'location'])
