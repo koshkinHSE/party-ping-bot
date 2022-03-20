@@ -30,7 +30,17 @@ def save_chat_members(message):
     chat_id = message.chat.id
     members = message.text
     members = members.replace("/add ", "")
-    db.save_chat_members(chat_id, members)
+    members = members.split(" ")
+    members_list = ""
+    for member in members:
+        if "@" in member:
+            member = member.replace("@", "")
+        print(member)
+        print(len(member))
+        if len(member) > 4:
+            members_list = members_list + member + " "
+    members_list = members_list[:-1]
+    db.save_chat_members(chat_id, members_list)
 
 
 def get_chat_members(message):
@@ -38,4 +48,9 @@ def get_chat_members(message):
     # You can always look at three things - how the fire burns, how the water flows and how Sqlite3 returns tuple of tuples for every hecking sneeze!
     members, = members  # tuples -> tuple
     members, = members  # tuple -> string
-    return members
+    members = members.split(" ")
+    members_list = ""
+    for member in members:
+        member = "@" + member
+        members_list = members_list + member + " "
+    return members_list

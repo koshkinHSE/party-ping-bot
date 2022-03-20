@@ -40,10 +40,13 @@ def handle_messages(message):
         bot.send_message(message.chat.id, cfg.ERR_WRONG_USAGE)
     elif message.chat.type == "group" or message.chat.type == "supergroup":  # Somewhy some private groups appear as super-
         if message_text.startswith("/add"):
-            if utils.save_chat_members(message):
-                bot.reply_to(message, cfg.MEMBERS_SAVED)
+            if message.text == "/add":
+                bot.reply_to(message, cfg.MEMBERS_EMPTY)
             else:
-                bot.reply_to(message, cfg.MEMBERS_UPDATED)
+                if utils.save_chat_members(message):
+                    bot.reply_to(message, cfg.MEMBERS_SAVED)
+                else:
+                    bot.reply_to(message, cfg.MEMBERS_UPDATED)
         elif "@all" in message.text:
             mention = utils.get_chat_members(message)
             bot.reply_to(message, mention)
