@@ -65,13 +65,18 @@ def test(message):
 # Other messages
 @bot.message_handler(func=lambda message: True, content_types=['sticker'])
 def msg_not_recognized_sticker(message):
-    bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEEN6xiNyhEU0K0JoyWstwR_zG4KplSowACOgADzMbLEXdDcDaH7QVAIwQ")
-    # Make it reply only when mentioned
+    if message.reply_to_message:  # if message is a reply to some other message
+        if str(message.reply_to_message.from_user.id) == str(cfg.BOT_USER_ID):  # if replied message id == this bot id
+            # Need something more neat there, not just store bot id in config
+            bot.send_sticker(message.chat.id, "CAACAgQAAxkBAAEEN6xiNyhEU0K0JoyWstwR_zG4KplSowACOgADzMbLEXdDcDaH7QVAIwQ")
 
 
 @bot.message_handler(func=lambda message: True, content_types=['photo', 'video', 'audio', 'voice', 'video_note', 'text', 'document', 'contact', 'location'])
 def msg_not_recognized_photo(message):
-    bot.send_message(message.chat.id, cfg.ERR_USE_COMMANDS)
+    if message.reply_to_message:  # if message is a reply to some other message
+        if str(message.reply_to_message.from_user.id) == str(cfg.BOT_USER_ID):  # if replied message id == this bot id
+            # Need something more neat there, not just store bot id in config
+            bot.send_message(message.chat.id, cfg.ERR_USE_COMMANDS)
 
 
 # Util

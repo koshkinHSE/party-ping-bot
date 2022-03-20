@@ -35,8 +35,6 @@ def save_chat_members(message):
     for member in members:
         if "@" in member:
             member = member.replace("@", "")
-        print(member)
-        print(len(member))
         if len(member) > 4:
             members_list = members_list + member + " "
     members_list = members_list[:-1]

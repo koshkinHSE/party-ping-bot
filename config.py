@@ -1,5 +1,6 @@
 # Settings
 TOKEN = ""
+BOT_USER_ID = ""
 DB_NAME = "bot.db"
 
 # Phrasebook
