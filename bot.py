@@ -46,6 +46,8 @@ def handle_messages(message):
         elif "@all" in message.text:
             mention = utils.get_chat_members(message)
             bot.reply_to(message, mention)
+        elif "Слава Украине" in message.text:
+            bot.reply_to(message, "Героям слава")
     elif message.chat.type == "supergroup":
         bot.send_message(message.chat.id, cfg.ERR_GROUPS_ONLY)
     elif message.chat.type == "channel":
