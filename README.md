@@ -1,4 +1,4 @@
-# party-ping-bot
-Ping all users in Telegram group by sending "@all"
+# Party Ping Bot
+Telegram bot that allows you to ping all member in group by sending "@all"
 
-(In progress)
+(Readme in progress)
