@@ -75,6 +75,3 @@ jobs:
             token: ${{secrets.TG_BOT_TOKEN}}
             message: |
               Doesn't work, Todd your Hovard
-              
-              
-                  
