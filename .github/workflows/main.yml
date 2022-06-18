@@ -19,8 +19,9 @@ jobs:
         with:
             to: ${{secrets.TELEGRAM_TO}}
             token: ${{secrets.TELEGRAM_TOKEN}}
+            format: markdown
             message: |
-              ${{github.actor}} created commit in ${{github.repository}}, starting Actions
+              [${{github.actor}}](http://github.com/${{github.actor}}) created [commit](${{github.event.commits[0].message}}) in [${{github.repository}}](http://github.com/${{github.repository}}), starting `Actions`...
 
   heroku:
     runs-on: ubuntu-latest
@@ -52,12 +53,11 @@ jobs:
         with:
             to: ${{secrets.TELEGRAM_TO}}
             token: ${{secrets.TELEGRAM_TOKEN}}
+            format: markdown
             message: |
-              It just works 
+              [It just works](https://party-ping-bot.herokuapp.com)
                   — Todd Hovard
-                  
-              https://party-ping-bot.herokuapp.com
-                  
+
   telegram-fail:
     runs-on: ubuntu-latest
     environment: Main
@@ -69,5 +69,5 @@ jobs:
         with:
             to: ${{secrets.TELEGRAM_TO}}
             token: ${{secrets.TELEGRAM_TOKEN}}
-            message: |
-              Doesn't work, Todd your Hovard
+            format: markdown
+            message: Doesn't work, [Todd your Hovard](${{github.event.commits[0].message}})
