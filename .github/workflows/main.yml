@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs: 
-  telegram-start:
+  notify-about-start:
     runs-on: ubuntu-latest
     environment: Main
     steps:
@@ -59,7 +59,7 @@ jobs:
           docker_options: "--no-cache"
           process_type: worker
 
-  telegram-finish:
+  notify-about-finish:
     runs-on: ubuntu-latest
     environment: Main
     needs: heroku
@@ -78,7 +78,7 @@ jobs:
               [It just works](https://github.com/koshkinHSE/party-ping-bot/actions)
                   — Todd Hovard
 
-  telegram-fail:
+  notify-about-fail:
     runs-on: ubuntu-latest
     environment: Main
     needs: heroku
