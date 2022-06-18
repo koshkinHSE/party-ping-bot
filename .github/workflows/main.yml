@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Main
     needs: heroku
-    if: needs.heroku.result == 'success'
+    if: always() && needs.heroku.result == 'success'
     steps:
       - name: notify in telega about finish
         uses: appleboy/telegram-action@master
@@ -62,7 +62,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: Main
     needs: heroku
-    if: needs.heroku.result == 'failure'
+    if: always() && needs.heroku.result == 'failure'
     steps:
       - name: notify in telega about finish
         uses: appleboy/telegram-action@master
