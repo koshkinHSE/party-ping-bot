@@ -33,7 +33,9 @@ jobs:
           username: ${{secrets.DOCKER_USERNAME}}
           password: ${{secrets.DOCKER_ACCESSTOKEN}}
       - name: Build
-        run: docker image build -t itskoshkin/party-ping-bot:0.1 -f ./dockerfile .
+        run: |
+          cd app
+          docker build -t itskoshkin/party-ping-bot:0.1 -f dockerfile .
       - name: Push
         run: docker push itskoshkin/party-ping-bot:0.1
 
