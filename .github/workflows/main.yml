@@ -34,7 +34,7 @@ jobs:
           password: ${{secrets.DOCKER_ACCESSTOKEN}}
       - name: Build
         run: |
-          ls -a
+          cd ..
           docker build -t itskoshkin/party-ping-bot:0.1 -f dockerfile .
       - name: Push
         run: docker push itskoshkin/party-ping-bot:0.1
