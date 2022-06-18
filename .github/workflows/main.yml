@@ -12,17 +12,19 @@ on:
 jobs: 
   telegram-start:
     runs-on: ubuntu-latest
+    environment: Main
     steps:
       - name: notify in telega about start
         uses: appleboy/telegram-action@master
         with:
-            to: 1250099141
-            token: 5121601039:AAGyehTRRH-g9w23nEnLqqResBH-6513zx0
+            to: TELEGRAM_TO
+            token: TELEGRAM_TOKEN
             message: |
               ${{github.actor}} created commit in ${{github.repository}}, starting Actions
 
   heroku:
     runs-on: ubuntu-latest
+    environment: Main
     needs: telegram-start
     steps:
       - name: Checkout
@@ -41,6 +43,7 @@ jobs:
 
   telegram-finish:
     runs-on: ubuntu-latest
+    environment: Main
     needs: heroku
     if: needs.heroku.result == 'success'
     steps:
@@ -57,6 +60,7 @@ jobs:
                   
   telegram-fail:
     runs-on: ubuntu-latest
+    environment: Main
     needs: heroku
     if: needs.heroku.result == 'failure'
     steps:
