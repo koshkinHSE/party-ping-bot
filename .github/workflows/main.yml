@@ -9,22 +9,14 @@ on:
   #  Manually
   workflow_dispatch:
 
-jobs:
-  sanity-check:
-    runs-on: ubuntu-latest
-    steps:
-      - name: reveal secrets
-        run: |
-          echo ${{secrets.SECRET_TOKEN}} | sed 's/./& /g' 
-      
+jobs: 
   telegram-start:
     runs-on: ubuntu-latest
-    needs: sanity-check
     steps:
       - name: notify in telega about start
         uses: appleboy/telegram-action@master
         with:
-            to: ${{secrets.TG_USER}}
+            to: ${{secrets.TELEGRAM_TO}}
             token: ${{secrets.TG_BOT_TOKEN}}
             message: |
               ${{github.actor}} created commit in ${{github.repository}}, starting Actions
@@ -55,7 +47,7 @@ jobs:
       - name: notify in telega about finish
         uses: appleboy/telegram-action@master
         with:
-            to: ${{secrets.TG_USER}}
+            to: ${{secrets.TELEGRAM_TO}}
             token: ${{secrets.TG_BOT_TOKEN}}
             message: |
               It just works 
@@ -71,7 +63,7 @@ jobs:
       - name: notify in telega about finish
         uses: appleboy/telegram-action@master
         with:
-            to: ${{secrets.TG_USER}}
+            to: ${{secrets.TELEGRAM_TO}}
             token: ${{secrets.TG_BOT_TOKEN}}
             message: |
               Doesn't work, Todd your Hovard
