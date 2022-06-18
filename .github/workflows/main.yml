@@ -20,7 +20,7 @@ jobs:
             disable_web_page_preview: true
             format: markdown
             message: |
-              [${{github.actor}}](https://github.com/${{github.actor}}) made a commit «${{github.event.commits[0].message}}» in [${{github.repository}}](https://github.com/${{github.repository}}), starting `Actions`...
+              [${{github.actor}}](https://github.com/${{github.actor}}) made a commit `${{github.event.commits[0].message}}` in [${{github.repository}}](https://github.com/${{github.repository}}), starting `Actions`...
 
   docker:
     runs-on: ubuntu-latest
