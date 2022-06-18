@@ -8,4 +8,4 @@ Telegram bot that allows you to ping all member in group by sending "@all"
 4. Spam  `@all`
 
 # Extra
-`/test` - check if alive ()
+`/test` - check if alive
