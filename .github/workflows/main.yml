@@ -19,9 +19,9 @@ jobs:
       - name: BPR2Heroku
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
-          email: ${{ secrets.HEROKU_EMAIL }}
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+          email: itskoshkin@icloud.com
+          heroku_api_key: 9e95ede0-1c9d-4a2c-899d-a5a3e2c5dff4
+          heroku_app_name: party-ping-bot
           dockerfile_directory: ./
           dockerfile_name: dockerfile
           docker_options: "--no-cache"
