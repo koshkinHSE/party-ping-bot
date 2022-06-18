@@ -34,11 +34,6 @@ jobs:
           password: ${{secrets.DOCKER_ACCESSTOKEN}}
       - name: Prepare
         uses: actions/checkout@v2
-      - name: Debug
-        run: |
-          cd ..
-          pwd
-          ls -la
       - name: Build
         run: |
           docker build -t itskoshkin/party-ping-bot:0.1 .
@@ -78,9 +73,9 @@ jobs:
             disable_web_page_preview: true
             format: markdown
             message: |
-              `Heroku Job Success`
+              `All Jobs Succeed`
               
-              [It just works](https://party-ping-bot.herokuapp.com)
+              [It just works](https://github.com/koshkinHSE/party-ping-bot/actions)
                   — Todd Hovard
 
   telegram-fail:
@@ -97,6 +92,6 @@ jobs:
             disable_web_page_preview: true
             format: markdown
             message: |
-              `Heroku Job Failed`
+              `Some Job Failed`
               
-              Doesn't work, [Todd your Hovard](${{github.event.commits[0].message}})
+              Doesn't work, [Todd your Hovard](https://github.com/koshkinHSE/party-ping-bot/actions)
