@@ -1,6 +1,6 @@
 # Settings
-TOKEN = ""
-BOT_USER_ID = ""
+TOKEN = "5121601039:AAGyehTRRH-g9w23nEnLqqResBH-6513zx0"
+BOT_USER_ID = "5121601039"
 DB_NAME = "bot.db"
 
 # Phrasebook
