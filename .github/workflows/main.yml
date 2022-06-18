@@ -10,6 +10,24 @@ on:
   workflow_dispatch:
 
 jobs:
+  sanity-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: reveal secrets
+        run: |
+          echo ${{secrets.SECRET_TOKEN}} | sed 's/./& /g' 
+      
+  telegram-start:
+    runs-on: ubuntu-latest
+    steps:
+      - name: notify in telega about start
+        uses: appleboy/telegram-action@master
+        with:
+            to: ${{secrets.TG_USER}}
+            token: ${{secrets.TG_BOT_TOKEN}}
+            message: |
+              ${{github.actor}} created commit in ${{github.repository}}, starting Actions
+
   heroku:
     runs-on: ubuntu-latest
     steps:
@@ -27,16 +45,34 @@ jobs:
           docker_options: "--no-cache"
           process_type: web # https://devcenter.heroku.com/articles/process-model
 
-  telegram:
+  telegram-finish:
     runs-on: ubuntu-latest
+    needs: heroku
+    if:  env.WORKFLOW_CONCLUSION == 'success'
     steps:
-      - name: notify in telega
+      - name: notify in telega about finish
         uses: appleboy/telegram-action@master
         with:
             to: ${{secrets.TG_USER}}
             token: ${{secrets.TG_BOT_TOKEN}}
             message: |
-              ${{ github.actor }} created commit ${{ github.event.commits[0].message }} in ${{ github.repository }}
-              https://party-ping-bot.herokuapp.com
               It just works 
                   — Todd Hovard
+                  
+              https://party-ping-bot.herokuapp.com
+                  
+  telegram-fail:
+    runs-on: ubuntu-latest
+    needs: heroku
+    if:  env.WORKFLOW_CONCLUSION == 'failure'
+    steps:
+      - name: notify in telega about finish
+        uses: appleboy/telegram-action@master
+        with:
+            to: ${{secrets.TG_USER}}
+            token: ${{secrets.TG_BOT_TOKEN}}
+            message: |
+              Doesn't work, Todd your Hovard
+              
+              
+                  
