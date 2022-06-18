@@ -19,9 +19,9 @@ jobs:
       - name: deploy 2 Heroku
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
-          email: ${{ secrets.hero_email }}
-          heroku_api_key: ${{ secrets.hero_apikey }}
-          heroku_app_name: ${{ secrets.hero_appname }}
+          email: ${{ secrets.HERO_EMAIL }}
+          heroku_api_key: ${{ secrets.HERO_APIKEY }}
+          heroku_app_name: ${{ secrets.HERO_APPNAME }}
           dockerfile_directory: ./
           dockerfile_name: dockerfile
           docker_options: "--no-cache"
@@ -33,8 +33,8 @@ jobs:
       - name: notify in telega
         uses: appleboy/telegram-action@master
         with:
-            to: ${{ secrets.tg_user }}
-            token: ${{ secrets.tg_bot_token }}
+            to: ${{ secrets.TG_USER }}
+            token: ${{ secrets.TG_BOT_TOKEN }}
             message: |
               ${{ github.actor }} created commit ${{ github.event.commits[0].message }} in ${{ github.repository }}
               https://party-ping-bot.herokuapp.com
