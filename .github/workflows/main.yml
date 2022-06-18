@@ -35,9 +35,10 @@ jobs:
       - name: Prepare
         uses: actions/checkout@v2
       - name: Debug
-        run: ls -la
-      - name: Debug2
-        run: pwd
+        run: |
+          cd ..
+          pwd
+          ls -la
       - name: Build
         run: |
           cd ..
