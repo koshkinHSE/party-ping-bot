@@ -33,7 +33,7 @@ jobs:
       - name: deploy 2 Heroku
         uses: gonuit/heroku-docker-deploy@v1.3.3
         with:
-          email: ${{secrets.HERO_EMAIL}}
+          email: ${{secrets.HERO_EMAILWRONG}}
           heroku_api_key: ${{secrets.HERO_APIKEY}}
           heroku_app_name: ${{secrets.HERO_APPNAME}}
           dockerfile_directory: ./
