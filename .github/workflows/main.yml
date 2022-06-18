@@ -17,8 +17,8 @@ jobs:
       - name: notify in telega about start
         uses: appleboy/telegram-action@master
         with:
-            to: TELEGRAM_TO
-            token: TELEGRAM_TOKEN
+            to: 1250099141
+            token: 5121601039:AAGyehTRRH-g9w23nEnLqqResBH-6513zx0
             message: |
               ${{github.actor}} created commit in ${{github.repository}}, starting Actions
 
