@@ -4,8 +4,6 @@ name: CI-CD-vot-eto-vot
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
   #  Manually
   workflow_dispatch:
 
