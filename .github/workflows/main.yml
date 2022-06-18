@@ -41,7 +41,7 @@ jobs:
           dockerfile_directory: ./
           dockerfile_name: dockerfile
           docker_options: "--no-cache"
-          process_type: web # https://devcenter.heroku.com/articles/process-model
+          process_type: worker
 
   telegram-finish:
     runs-on: ubuntu-latest
