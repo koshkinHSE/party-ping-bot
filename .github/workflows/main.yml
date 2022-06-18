@@ -39,7 +39,7 @@ jobs:
       - name: Build
         run: |
           cd ..
-          docker build -t itskoshkin/party-ping-bot:0.1 -f dockerfile .
+          docker build -t itskoshkin/party-ping-bot:0.1 .
       - name: Push
         run: docker push itskoshkin/party-ping-bot:0.1
 
