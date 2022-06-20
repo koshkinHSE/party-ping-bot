@@ -38,7 +38,7 @@ jobs:
         run: |
           docker build -t itskoshkin/party-ping-bot:0.1 .
       - name: Push
-        run: docker push itskoshkin/party-ping-bot:latest
+        run: docker push itskoshkin/party-ping-bot:0.1
 
   heroku:
     runs-on: ubuntu-latest
